@@ -4,7 +4,7 @@ project(Quiz3)
 set(CMAKE_CXX_STANDARD 14)
 
 #compile flags to match Gradescope test environment
-set(GCC_COVERAGE_COMPILE_FLAGS "-Wall -Werror")
+set(GCC_COVERAGE_COMPILE_FLAGS "-Wall -Werror") # remove -Werror if there are problems with Visual Studio
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 
 ##pull in desired version of catch through cmake automatically, make it available
@@ -16,14 +16,19 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Catch2)
 
-# These tests can use the Catch2-provided main
 
 include_directories(src)
 
 add_executable(Tests
-        src/interquartile_range.h
+        src/main.cpp # your test file
+        # add your own header files below - should be automatically added in CLion
+        # ex: src/AVH.h src/AVL.cpp
+        )
+# These tests can use the Catch2-provided main
+add_executable(Tests
         test/test.cpp # your test file
-        # add your own header files below
+        # add your own header files below - should be automatically added in CLion
+        # ex: src/AVH.h src/AVL.cpp
         )
         
 target_link_libraries(Tests PRIVATE Catch2::Catch2WithMain) #link catch to test.cpp file

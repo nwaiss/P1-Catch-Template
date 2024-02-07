@@ -1,4 +1,12 @@
 # Completing and Submitting this Assignment
+## Project 1 Changes to Quiz Template
+This template provides 2 executables, Main and Tests. Main will run your main.cpp file as it is, while Tests will run Catch tests on your test.cpp and ignore your main.cpp file.
+
+Depending on your editor, you may need to modify the `add_executable()` sections in the CMakeLists.txt file as you add header files that you reference in main. An example is provided within the file. This should be done automatically in CLion.
+
+Choosing the executable differs depending on the editor that you are using. In Clion (and potentially Visual Studio), you should be able to click the dropdown next to the Run button and choose Main or Tests. In VSCode, you should click on the CMake tab in the sidebar, and under Launch, click the edit button to select Main to run your AVL tree.
+
+Please reach out on Slack if you have any questions, and the guide will be updated accordingly.
 
 ## Video Tutorial
 <!-- Setting up embed: -->
@@ -108,6 +116,16 @@ cmake_minimum_required(VERSION 3.24)
 to have whichever version of CMake that you have installed.
 
 Beyond this setup, the editing/testing process should be the same as outlined in the Codespaces tutorial video. More details are avaiable [here](https://github.com/COP3530/catch-with-cmake#part-3-alternate-integrating-with-vscode), although note that the suggested edits to the CMakeLists.txt file are already present in the template.
+
+#### Visual Studio
+This template has also been confirmed working with Visual Studio. Make sure you have the **Desktop Development with C++** "workload" installed ([guide](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170)). Choose the Tests.exe executable from the Run button, and it should pop open a command prompt window with your test results after compiling. Currently I haven't gotten it to integrate with the testing UI yet - if you figure this out, please reach out!
+
+You may run into an error where it says the /Werror flag is unrecognized. If this is the case, remove the `-Werror` flag from line 7 of CMakeLists.txt, like so:
+```cmake
+set(GCC_COVERAGE_COMPILE_FLAGS "-Wall -Werror")
+# becomes
+set(GCC_COVERAGE_COMPILE_FLAGS "-Wall")
+```
 
 ## Method 3: Commandline Testing (Simplest)
 

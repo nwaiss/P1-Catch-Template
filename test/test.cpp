@@ -1,8 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
 
-#include "interquartile_range.h"
-
 using namespace std;
 
 // the syntax for defining a test is below. It is important for the name to be unique, but you can group multiple tests with [tags]. A test can have [multiple][tags] using that syntax.
@@ -34,88 +32,19 @@ TEST_CASE("Test 2", "[flag]"){
 	// each section runs the setup code independently to ensure that they don't affect each other
 }
 
-// you must write 5 unique, meaningful tests for credit on the testing portion of this quiz!
+// you must write 5 unique, meaningful tests for credit on the testing portion of this project!
 
-// the provided tests from edugator are below. Note that you must determine the correct output for the [output_hidden] tests yourself
+// the provided test from the template is below.
 
-TEST_CASE("Function: IQR 1", "[given]") {
-	std::vector<int> v = {2, 4, 4, 5, 6, 7, 8};
-	Node* head = nullptr;
-	for(int i: v)
-		head = insertEnd(head, i);
-
-	REQUIRE(interQuartile(head) == 3.00);
-	
-    while (head != nullptr) 
-    {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-    }
+TEST_CASE("Example BST Insert", "[flag]"){
+	/*
+		MyAVLTree tree;   // Create a Tree object
+		tree.insert(3);
+		tree.insert(2);
+		tree.insert(1);
+		std::vector<int> actualOutput = tree.inorder();
+		std::vector<int> expectedOutput = {1, 2, 3};
+		REQUIRE(expectedOutput.size() == actualOutput.size());
+		REQUIRE(actualOutput == expectedOutput);
+	*/
 }
-
-TEST_CASE("Function: IQR 2", "[given]") {
-	std::vector<int> v = {1, 2, 3, 4};
-	Node* head = nullptr;
-	for(int i: v)
-		head = insertEnd(head, i);
-
-	REQUIRE(interQuartile(head) == 2.00);
-	
-    while (head != nullptr) 
-    {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-    }
-}
-
-// uncomment these and put the correct values in the REQUIRE blocks
-
-/* TEST_CASE("Function: IQR 3", "[output_hidden]") {
-	std::vector<int> v = {1, 8, 15, 43, 82, 101, 110, 2456, 55345, 137556};
-	Node* head = nullptr;
-	for(int i: v)
-		head = insertEnd(head, i);
-
-	REQUIRE(interQuartile(head) == ?);
-	
-    while (head != nullptr) 
-    {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-    }
-} */
-
-/* TEST_CASE("Function: IQR 4", "[output_hidden]") {
-	std::vector<int> v = {2, 4, 4, 5, 6, 7, 8, 9, 10};
-	Node* head = nullptr;
-	for(int i: v)
-		head = insertEnd(head, i);
-
-	REQUIRE(interQuartile(head) == ?);
-	
-    while (head != nullptr) 
-    {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-    }
-} */
-
-/* TEST_CASE("Function: IQR 5", "[output_hidden]") {
-	std::vector<int> v = {1, 8, 15, 43, 82, 101, 110, 2456, 55345, 137556, 137576};
-	Node* head = nullptr;
-	for(int i: v)
-		head = insertEnd(head, i);
-
-	REQUIRE(interQuartile(head) == ?);
-	
-    while (head != nullptr) 
-    {
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-    }
-} */
