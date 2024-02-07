@@ -8,6 +8,23 @@ Choosing the executable differs depending on the editor that you are using. In C
 
 Please reach out on Slack if you have any questions, and the guide will be updated accordingly.
 
+### Running Main/Tests
+
+#### VSCode/Codespace
+To run main, first enter the CMake tab on the left and select Main as your launch target:
+![vscode target selection](.github-images/VSCode/select_main.png)
+
+Then to run your main by itself without any tests, click the play button on the bottom of your VSCode window:
+![vscode run main](.github-images/VSCode/run_main.png)
+
+To run your tests, navigate to the testing tab as normal, and click the relevant run tests button:
+![vscode run tests](.github-images/VSCode/run_tests.png)
+
+#### CLion
+Make sure to comment out the lines at the bottom of `CMakeLists.txt` or you will have *a lot* of possible targets. To select whether to run your main or tests, click the dropdown at the top of the window  and select your desired executable:
+![clion select target](.github-images/CLion/run_clion.png)
+
+
 ## Video Tutorial
 <!-- Setting up embed: -->
 <!-- https://ardalis.com/how-to-embed-youtube-video-in-github-readme-markdown/ -->
