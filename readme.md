@@ -151,9 +151,9 @@ In test/test.cpp, replace the line at the top that reads `#include <catch2/catch
 #include "catch/catch_amalgamated.hpp"
 ```
 
-Also change the include for `interquartile_range.h` with a relative path, like so:
+Also add includes for your header files with a relative path, like so:
 ```cpp
-#include "../src/interquartile_range.h"
+#include "../src/AVLTree.h"
 ```
 
 Run this command once from your project directory:
@@ -161,7 +161,9 @@ Run this command once from your project directory:
 g++ -std=c++14 -Werror -Wuninitialized -g -c test/catch/catch_amalgamated.cpp -o build/catch_amalgamated.o
 ```
 
-Next, run these commands to build and view your tests:
+Next, run these commands to build and view your tests.
+Add any source files (.cpp files) you might need to the command.
+Do not add the source file containing the main function.
 ```sh
 g++ -std=c++14 -Werror -Wuninitialized -g build/catch_amalgamated.o test/test.cpp -o build/test
 ./build/test
