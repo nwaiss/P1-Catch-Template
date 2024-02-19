@@ -24,6 +24,63 @@ To run your tests, navigate to the testing tab as normal, and click the relevant
 Make sure to comment out the lines at the bottom of `CMakeLists.txt` or you will have *a lot* of possible targets. To select whether to run your main or tests, click the dropdown at the top of the window  and select your desired executable:
 ![clion select target](.github-images/CLion/run_clion.png)
 
+### Common Issues
+#### Including main.cpp in your test.cpp file
+Catch2 uses its own main function, and as such having your class and function definitions in main.cpp and including them in your test.cpp file **will not work.** To test your code effectively, you should split any code you want to be able to test into a separate `.h` and `.cpp` files. For example, if you put your tree code into `AVL.h` and `AVL.cpp`, the top of your test.cpp would look like:
+
+```cpp
+#include <catch2/catch_test_macros.hpp>
+#include <iostream>
+
+#include "AVL.h"
+```
+
+and the `add_executable()` blocks in `CMakeLists.txt` would look like:
+```cpp
+add_executable(Main
+        src/main.cpp
+        src/AVL.h src/AVL.cpp
+        )
+        
+# These tests can use the Catch2-provided main
+add_executable(Tests
+        test/test.cpp
+        src/AVL.h src/AVL.cpp
+        )
+```
+
+#### Empty/Broken main.cpp
+For CMake to build your tests, all of the executables need to build successfully. Therefore, if your main.cpp is missing something like a `main()` function or otherwise fails to build, your tests will not successfully build and run either.
+
+#### Testing input parsing in main.cpp/Testing void functions
+If you do your input parsing in `main.cpp`, you will not be able to test those functions in `test.cpp`. The easiest solution would be to simply move that functionality into a method that you either include in your Tree class or in a separate Parser class, but other solutions could also work.
+
+Similarly, you may run into trouble if you made all of your tree functions output to console but return void. The easiest way to solve this would be to simply make those functions return some testable datatype like a string or a vector that you can verify in your Catch tests. Alternatively, you could follow the structure of [this link](https://stackoverflow.com/a/4191318) to capture and test console output, but this is more complex.
+
+#### Testing private methods
+You may want to test helper methods in your AVL class that are declared as private. By default, Catch testing can't see private methods because it uses regular C++ class access, but there is a workaround that you can use to make these private functions visible to Catch while still keeping proper access declarations in your actual code (which we grade). Consider the following:
+
+```cpp
+#include <catch2/catch_test_macros.hpp>
+#include <iostream>
+
+#define private public
+
+#include "AVL.h"
+```
+
+This *preprocessor directive* will replace every instance of the word "private" with "public" in the included files that follow the declaration. This has the effect of turning all of your private methods into public ones that Catch2 can see, but only in your test.cpp. There are a couple things keep in mind if you choose to do this, however:
+
+1. This directive will only replace "private" with "public" if the word is actually present, so if you make use of the fact that a class's properties and function definitions are private by default without having to write `private:`, you'll need to go back into your header and explicitly write the access modifier for this to work.
+2. Depending on what standard library headers you use, this change could break their functionality. To get around this, you can either:
+   1. (Simpler) Include whatever system headers you use in your code in `test.cpp` *above* the `#define public private` line. This causes the compiler to include the relevant headers *before* redefining the `private` keyword, and once the `#include` blocks inside of your `AVL.h` headers are reached, the system headers won't be included again due to the `#pragma once` or `#ifndef` directives preventing a multiple definition error in the headers.
+   2. (More advanced) Using another `#define` directive, define a "debug" flag (`#define debug`) in your `test.cpp` and remove `#define public private`. Then, put a
+      ```cpp
+      #ifdef debug 
+      #define public private
+      #endif
+      ```
+   segment in each of the files you want to test *after* you include system headers. That way, upon compiling test.cpp, the "debug" flag will be defined, which will then cause the access modifiers to be changed in every file that you put the `#ifdef` block in.
 
 ## Video Tutorial
 <!-- Setting up embed: -->

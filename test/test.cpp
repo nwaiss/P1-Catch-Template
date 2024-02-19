@@ -1,6 +1,9 @@
 #include <catch2/catch_test_macros.hpp>
 #include <iostream>
 
+// uncomment and replace the following with your own headers
+// #include "AVL.h"
+
 using namespace std;
 
 // the syntax for defining a test is below. It is important for the name to be unique, but you can group multiple tests with [tags]. A test can have [multiple][tags] using that syntax.
