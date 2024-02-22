@@ -52,6 +52,19 @@ add_executable(Tests
 #### Empty/Broken main.cpp
 For CMake to build your tests, all of the executables need to build successfully. Therefore, if your main.cpp is missing something like a `main()` function or otherwise fails to build, your tests will not successfully build and run either.
 
+#### My code works elsewhere but I'm getting new errors with the template!
+The idea behind this template is that you use it and start testing from when you first begin working on your project. That way, you'll be able to address any issues with testing as they come up and be able to ensure that your basic functionality is working before you start writing the more advanced parts of this project.
+
+However, if you just started using this template to run your catch tests, you may run into errors that you didn't see when running your code elsewhere. This is because `CMakeLists.txt` sets the `-Werror` and `-Wall` compiler flags which treats all warnings as errors and increases the number of warnings, respectively. If you don't feel like addressing the cause of the errors, you can safely remove the `-Wall` flag, which should suppress most of the errors. 
+
+However, if you still have errors, you should fix them and leave the `-Werror` flag as it is. This is because Gradescope uses `-Werror` when compiling your project, so if you don't address them now, the autograder will likely fail to successfully build and test your project.
+
+#### My tests fail to run in CLion with an error that looks like the text of my test cases!
+
+This template uses the latest version of Catch2 (3.5.2 as of the writing of this readme). Older versions of CLion can have trouble with later versions of Catch2 v3. These errors can usually be fixed by just updating your CLion. 
+
+If for whatever reason it still doesn't work, you could also try downgrading to a lower version >= 3.0 ([visible from the Catch2 Releases page](https://github.com/catchorg/Catch2/releases)). Edit the GIT_TAG attribute in CMakeLists.txt to change this.
+
 #### Testing input parsing in main.cpp/Testing void functions
 If you do your input parsing in `main.cpp`, you will not be able to test those functions in `test.cpp`. The easiest solution would be to simply move that functionality into a method that you either include in your Tree class or in a separate Parser class, but other solutions could also work.
 
