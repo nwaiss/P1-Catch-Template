@@ -20,9 +20,18 @@ Then to run your main by itself without any tests, click the play button on the 
 To run your tests, navigate to the testing tab as normal, and click the relevant run tests button:
 ![vscode run tests](.github-images/VSCode/run_tests.png)
 
+##### Debugging
+To debug your either your main or tests, you can place breakpoints as normal. Then, go into the CMake tab and under the debug section, choose whether to debug the Main or Tests target. Press either of the buttons indicated by red arrows to start the debugger for the target you selected.
+
+![vscode debugger](.github-images/VSCode/debugging_vscode.png)
+
 #### CLion
 Make sure to comment out the lines at the bottom of `CMakeLists.txt` or you will have *a lot* of possible targets. To select whether to run your main or tests, click the dropdown at the top of the window  and select your desired executable:
+
 ![clion select target](.github-images/CLion/run_clion.png)
+
+##### Debugging
+Debugging should work as expected. You can also put breakpoints in your catch tests if you desire.
 
 ### Common Issues
 #### Including main.cpp in your test.cpp file
