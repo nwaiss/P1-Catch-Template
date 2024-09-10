@@ -179,6 +179,12 @@ Make sure to comment out the lines at the bottom of `CMakeLists.txt` or you will
 
 ![clion select target](.github-images/CLion/run_clion.png)
 
+From here, if you run the Tests target, you should see your test results appear in a testing window that appears. 
+
+![clion test results](.github-images/CLion/test_results.png)
+
+By default, CLion will only show failing tests. Click on the checkmark button in the top of the panel to show passing tests as well.
+
 #### Debugging
 Debugging should work as expected. You can also put breakpoints in your catch tests if you desire.
 
