@@ -157,7 +157,7 @@ Depending on your editor, you may need to modify the `add_executable()` sections
 
 Choosing the executable differs depending on the editor that you are using. In Clion (and potentially Visual Studio), you should be able to click the dropdown next to the Run button and choose Main or Tests. In VSCode, you should click on the CMake tab in the sidebar, and under Launch, click the edit button to select Main to run your AVL tree.
 
-Please reach out on Slack if you have any questions, and the guide will be updated accordingly.
+Please reach out on Discord if you have any questions, and the guide will be updated accordingly.
 
 ### VSCode/Codespace
 To run main, first enter the CMake tab on the left and select Main as your launch target:
@@ -179,7 +179,7 @@ Make sure to comment out the lines at the bottom of `CMakeLists.txt` or you will
 
 ![clion select target](.github-images/CLion/run_clion.png)
 
-From here, if you run the Tests target, you should see your test results appear in a testing window that appears. 
+From here, if you run the Tests target, you should see your test results appear in a testing window at the bottom of your screen. 
 
 ![clion test results](.github-images/CLion/test_results.png)
 
